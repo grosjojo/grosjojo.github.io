@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Recherche Bing avec phrase aléatoire</title>
+  <style>
+    body {
+      background-color: black;
+      color: green;
+    }
+  </style>
+  <script>
+    var phrases = [
+      "Délicieuse recette de tarte aux pommes",
+      "Savoureux gratin de légumes",
+      "Recette traditionnelle de boeuf bourguignon",
+      "Délicieux gâteau au chocolat fondant",
+      "Recette de poulet rôti aux herbes",
+      "Incontournable recette de crêpes",
+      "Délicieux risotto aux champignons",
+      "Recette de salade fraîcheur aux agrumes",
+      "Succulent pain perdu caramélisé",
+      "Recette de lasagnes maison gratinées",
+      "Comment réparer un moteur défectueux",
+      "Tutoriel pour vidanger l'huile de voiture",
+      "Les principes de base de la mécanique automobile",
+      "Comment changer une roue crevée",
+      "Réglages et entretien d'un vélo",
+      "Les différentes pièces d'un moteur",
+      "Comment démonter et nettoyer un carburateur",
+      "Précautions à prendre lors de la réparation d'un moteur",
+      "Techniques de démontage et de montage d'une transmission",
+      "Guide de dépannage pour les problèmes de démarrage de voiture",
+      "Recette de pizza maison à la garniture variée",
+      "Savoureux gratin dauphinois traditionnel",
+      "Comment préparer des cookies moelleux",
+      "Recette de crème brûlée à la vanille",
+      "Découvrez les secrets de la pâtisserie française",
+      "Guide pour entretenir votre véhicule tout-terrain",
+      "Comment changer les plaquettes de frein d'une voiture",
+      "Techniques de base pour réparer une fuite d'huile",
+      "Réglages et maintenance des moteurs hors-bord",
+      "Guide pour choisir le bon pneu pour votre véhicule",
+      "Comment nettoyer efficacement les vitres",
+      "Techniques pour dépoussiérer rapidement",
+      "Astuces pour enlever les taches tenaces",
+      "Organiser et ranger votre garde-robe",
+      "Nettoyer les joints de carrelage avec des produits naturels",
+      "Méthodes pour désodoriser votre maison",
+      "Comment entretenir les meubles en bois",
+      "Astuce pour éliminer les acariens et les allergènes",
+      "Conseils pour laver les vêtements délicats",
+      "Comment désinfecter la cuisine efficacement",
+      "Techniques pour éliminer les mauvaises odeurs dans la salle de bain",
+      "Conseils pour nettoyer les tapis et les moquettes",
+      "Comment organiser votre espace de travail",
+      "Astuce pour laver les rideaux en toute simplicité",
+      "Méthodes pour nettoyer les appareils électroménagers",
+      "Conseils pour éliminer les traces de calcaire",
+      "Comment entretenir les sols en bois",
+      "Techniques pour faire briller l'argent",
+      "Astuce pour enlever les taches sur les vêtements",
+      "Conseils pour nettoyer les surfaces en acier inoxydable"
+    ];
+
+    // Mélanger l'ordre des phrases
+    phrases.sort(function() { return 0.5 - Math.random() });
+
+    var index = 0;
+    var rechercheCount = 0; // Compteur de recherches effectuées
+
+    function genererPhraseAleatoire() {
+      if (rechercheCount >= 50) {
+        return; // Arrêter l'exécution après 5 recherches
+      }
+
+      var phraseAleatoire = phrases[index];
+      var rechercheBingURL = "https://www.bing.com/search?q=" + encodeURIComponent(phraseAleatoire);
+      var fenetreRecherche = window.open(rechercheBingURL, "_blank");
+
+      // Fermer la fenêtre après 5 secondes (5000 millisecondes)
+      setTimeout(function() {
+        fenetreRecherche.close();
+      }, 5000);
+
+      // Incrémenter l'index et le compteur de recherches
+      index++;
+      rechercheCount++;
+
+      // Réinitialiser l'index si toutes les phrases ont été utilisées
+      if (index >= phrases.length) {
+        index = 0;
+        // Mélanger l'ordre des phrases à nouveau
+        phrases.sort(function() { return 0.5 - Math.random() });
+      }
+
+      // Appeler la fonction à un temps aléatoire entre 5 et 10 secondes
+      var tempsAleatoire = Math.floor(Math.random() * (10000 - 5000 + 1)) + 5000;
+      setTimeout(genererPhraseAleatoire, tempsAleatoire);
+    }
+
+    // Appeler la fonction pour la première fois
+    genererPhraseAleatoire();
+  </script>
+</head>
+<body>
+  <h1>Recherche Bing avec phrase aléatoire</h1>
+</body>
+</html>
